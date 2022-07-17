@@ -5,7 +5,7 @@ const error = chalk.bold.red;
 const warning = chalk.hex("#FFA500");
 
 const allArguments = process.argv;
-const myArguments: string[] = process.argv.slice(2);
+const myArguments: string[] = allArguments.slice(2);
 
 if (!myArguments.length) {
   console.log(error("Please pass in a city to picnic in"));
