@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const allArguments = process.argv;
 const myArguments: string[] = process.argv.slice(2);
 
