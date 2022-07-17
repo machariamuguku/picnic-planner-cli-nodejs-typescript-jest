@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Macharia Muguku <machariamuguku@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build":"tsc"
+  },
   "devDependencies": {
     "@types/node": "^18.0.5",
     "typescript": "^4.7.4"
