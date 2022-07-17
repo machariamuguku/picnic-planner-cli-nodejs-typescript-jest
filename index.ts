@@ -5,7 +5,7 @@ const myArguments: string[] = process.argv.slice(2);
 
 if (!myArguments.length) {
   console.log("Please pass in a city to picnic in");
-  process.exit();
+  process.exit(1);
 }
 if (myArguments.length > 1) {
   console.log(
