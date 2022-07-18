@@ -25,7 +25,7 @@ if (!myArguments.length) {
 if (myArguments.length > 1) {
   console.warn(
     chalkWarning(
-      `You've passed in more than one city. We'll attempt to use the first one: ('${city}')`
+      `You've passed in more than one city. We'll attempt to use the first one: '${city}'`
     )
   );
 }
