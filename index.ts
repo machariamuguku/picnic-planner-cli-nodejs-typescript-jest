@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import chalk from "chalk";
+import fetch from "node-fetch";
 
 const errorFn = chalk.bold.red;
 const warningFn = chalk.hex("#FFA500");
@@ -18,3 +19,16 @@ if (myArguments.length > 1) {
     )
   );
 }
+
+const queryWeatherApi = async (city: string) => {
+  try {
+    const response = await fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?unitGroup=metric***REMOVED***`
+    );
+    const body = await response.text();
+    return body;
+  } catch (err) {
+    console.log(errorFn(err));
+    return Promise.reject();
+  }
+};
