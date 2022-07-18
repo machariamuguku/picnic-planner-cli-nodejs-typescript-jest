@@ -82,7 +82,7 @@ const processWeatherData = (weatherData: WeatherData) => {
     process.exit(0);
   } else {
     const preferredPicnicDay = picnicDays.reduce((prevValue, currValue) => {
-      if (currValue.windspeed > prevValue.windspeed) {
+      if (currValue.windspeed < prevValue.windspeed) {
         return currValue;
       }
       return prevValue;
