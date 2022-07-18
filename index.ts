@@ -45,17 +45,17 @@ const queryNextWeekendWeatherForecast = async (
       const errorMessage = await response.text();
       return Promise.reject(errorMessage);
     }
-  } catch (err) {
-    return Promise.reject(err);
+  } catch (error) {
+    return Promise.reject(error);
   }
 };
 
-const isCold = (temp: Day["temp"]) => {
-  return temp < 10;
+const isCold = (temperature: Day["temp"]) => {
+  return temperature < 10;
 };
 
-const isExpectedToRain = (precip: Day["precip"]) => {
-  return precip > 0;
+const isExpectedToRain = (precipitation: Day["precip"]) => {
+  return precipitation > 0;
 };
 
 const getDayNameFromDateTime = (dateTime: Day["datetime"]) => {
@@ -99,7 +99,7 @@ const processWeatherData = (weatherData: WeatherData) => {
 
 queryNextWeekendWeatherForecast(city, apiKey)
   .then((weatherData) => processWeatherData(weatherData))
-  .catch((err) => {
-    console.error(chalkError(err));
+  .catch((error) => {
+    console.error(chalkError(error));
     process.exit(1);
   });
