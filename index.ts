@@ -7,6 +7,7 @@ import { WeatherData, Day } from "./types";
 const apiKey = process.env.API_KEY;
 const errorFn = chalk.bold.red;
 const warningFn = chalk.hex("#FFA500");
+const successFn = chalk.greenBright;
 
 const allArguments = process.argv;
 const myArguments: string[] = allArguments.slice(2);
@@ -51,4 +52,43 @@ const isCold = (temp: Day["temp"]) => {
 
 const isExpectedToRain = (precip: Day["precip"]) => {
   return precip > 0;
+};
+
+const getDayNameFromDateTime = (dateTime: string) => {
+  const date = new Date(dateTime);
+  const day = date.toLocaleDateString("en-us", { weekday: "long" });
+  return day;
+};
+
+const processWeatherData = (weatherData: WeatherData) => {
+  const picnicDays = weatherData.days.filter(
+    (day) => !isCold(day.temp) && !isExpectedToRain(day.precip)
+  );
+
+  if (!picnicDays.length) {
+    console.log(
+      successFn(
+        "The weather isn’t looking very good this weekend, maybe stay indoors."
+      )
+    );
+    process.exit(0);
+  } else if (picnicDays.length === 1) {
+    const day = getDayNameFromDateTime(picnicDays[0].datetime);
+    console.log(successFn(`You should have your picnic on ${day}.`));
+    process.exit(0);
+  } else {
+    const preferredPicnicDay = picnicDays.reduce((prevValue, currValue) => {
+      if (currValue.windspeed > prevValue.windspeed) {
+        return currValue;
+      }
+      return prevValue;
+    });
+    const day = getDayNameFromDateTime(preferredPicnicDay.datetime);
+    console.log(
+      successFn(
+        `This weekend looks nice for a picnic, ${day} is best because it’s less windy.`
+      )
+    );
+    process.exit(0);
+  }
 };
