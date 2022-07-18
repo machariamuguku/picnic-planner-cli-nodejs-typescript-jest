@@ -41,10 +41,9 @@ const queryNextWeekendWeatherForecast = async (
     if (response.ok) {
       const weatherData: WeatherData = await response.json();
       return weatherData;
-    } else {
-      const errorMessage = await response.text();
-      return Promise.reject(errorMessage);
     }
+    const errorMessage = await response.text();
+    return Promise.reject(errorMessage);
   } catch (error) {
     return Promise.reject(error);
   }
