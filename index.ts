@@ -2,7 +2,7 @@
 import "dotenv/config";
 import chalk from "chalk";
 import fetch from "node-fetch";
-import { WeatherData } from "./types";
+import { WeatherData, Day } from "./types";
 
 const apiKey = process.env.API_KEY;
 const errorFn = chalk.bold.red;
@@ -42,4 +42,8 @@ const queryWeatherApi = async (city: string, apiKey: string) => {
   } catch (err) {
     return Promise.reject(err);
   }
+};
+
+const isCold = (temp: Day["temp"]) => {
+  return temp < 10;
 };
