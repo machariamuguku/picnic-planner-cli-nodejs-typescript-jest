@@ -4,11 +4,11 @@ import chalk from "chalk";
 import fetch from "node-fetch";
 import { WeatherData, Day } from "./types";
 
-const apiKey = process.env.API_KEY;
 const errorFn = chalk.bold.red;
 const warningFn = chalk.hex("#FFA500");
 const successFn = chalk.greenBright;
 
+const apiKey = process.env.API_KEY;
 const allArguments = process.argv;
 const myArguments: string[] = allArguments.slice(2);
 const city = myArguments[0];
@@ -30,7 +30,10 @@ if (myArguments.length > 1) {
   );
 }
 
-const queryNextWeekendWeatherForecast = async (city: string, apiKey: string) => {
+const queryNextWeekendWeatherForecast = async (
+  city: string,
+  apiKey: string
+) => {
   try {
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?include=days&elements=temp,precip,datetime,windspeed&unitGroup=metric&key=${apiKey}`
