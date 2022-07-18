@@ -66,7 +66,7 @@ export interface Day {
   hours: Hour[];
 }
 
-export interface weatherData {
+export interface WeatherData {
   queryCost: number;
   latitude: number;
   longitude: number;

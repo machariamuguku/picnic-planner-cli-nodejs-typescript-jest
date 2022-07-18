@@ -2,6 +2,7 @@
 import "dotenv/config";
 import chalk from "chalk";
 import fetch from "node-fetch";
+import { WeatherData } from "./types";
 
 const apiKey = process.env.API_KEY;
 const errorFn = chalk.bold.red;
@@ -32,7 +33,7 @@ const queryWeatherApi = async (city: string, apiKey: string) => {
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?unitGroup=metric&key=${apiKey}`
     );
     if (response.ok) {
-      const weatherData = await response.json();
+      const weatherData: WeatherData = await response.json();
       return weatherData;
     } else {
       const errorMessage = await response.text();
