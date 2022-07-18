@@ -11,6 +11,7 @@ const successFn = chalk.greenBright;
 
 const allArguments = process.argv;
 const myArguments: string[] = allArguments.slice(2);
+const city = myArguments[0];
 
 if (!apiKey) {
   console.error(errorFn("Api key missing"));
@@ -24,7 +25,7 @@ if (!myArguments.length) {
 if (myArguments.length > 1) {
   console.warn(
     warningFn(
-      `You've passed in more than one city. We'll attempt to use the first one: ('${myArguments[0]}')`
+      `You've passed in more than one city. We'll attempt to use the first one: ('${city}')`
     )
   );
 }
@@ -92,3 +93,10 @@ const processWeatherData = (weatherData: WeatherData) => {
     process.exit(0);
   }
 };
+
+queryWeatherApi(city, apiKey)
+  .then((weatherData) => processWeatherData(weatherData))
+  .catch((err) => {
+    console.error(errorFn(err));
+    process.exit(1);
+  });
