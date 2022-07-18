@@ -12,15 +12,15 @@ const allArguments = process.argv;
 const myArguments: string[] = allArguments.slice(2);
 
 if (!apiKey) {
-  console.log(errorFn("Api key missing"));
+  console.error(errorFn("Api key missing"));
   process.exit(1);
 }
 if (!myArguments.length) {
-  console.log(errorFn("Please pass in a city to picnic in"));
+  console.error(errorFn("Please pass in a city to picnic in"));
   process.exit(1);
 }
 if (myArguments.length > 1) {
-  console.log(
+  console.warn(
     warningFn(
       `You've passed in more than one city. We'll attempt to use the first one. ('${myArguments[0]}')`
     )
