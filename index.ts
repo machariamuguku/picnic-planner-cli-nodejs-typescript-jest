@@ -25,10 +25,14 @@ const queryWeatherApi = async (city: string) => {
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?unitGroup=metric***REMOVED***`
     );
-    const body = await response.text();
-    return body;
+    if (response.ok) {
+      const weatherData = await response.json();
+      return weatherData;
+    } else {
+      const errorMessage = await response.text();
+      return Promise.reject(errorMessage);
+    }
   } catch (err) {
-    console.log(errorFn(err));
-    return Promise.reject();
+    return Promise.reject(err);
   }
 };
