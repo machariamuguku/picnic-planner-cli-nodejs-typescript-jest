@@ -55,7 +55,7 @@ const isExpectedToRain = (precip: Day["precip"]) => {
   return precip > 0;
 };
 
-const getDayNameFromDateTime = (dateTime: string) => {
+const getDayNameFromDateTime = (dateTime: Day["datetime"]) => {
   const date = new Date(dateTime);
   const day = date.toLocaleDateString("en-us", { weekday: "long" });
   return day;
