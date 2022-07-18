@@ -47,3 +47,7 @@ const queryWeatherApi = async (city: string, apiKey: string) => {
 const isCold = (temp: Day["temp"]) => {
   return temp < 10;
 };
+
+const isExpectedToRain = (precip: Day["precip"]) => {
+  return precip > 0;
+};
