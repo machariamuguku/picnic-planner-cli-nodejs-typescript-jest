@@ -33,7 +33,7 @@ if (myArguments.length > 1) {
 const queryWeatherApi = async (city: string, apiKey: string) => {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?include=days&unitGroup=metric&key=${apiKey}`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?include=days&elements=temp,precip,datetime,windspeed&unitGroup=metric&key=${apiKey}`
     );
     if (response.ok) {
       const weatherData: WeatherData = await response.json();
