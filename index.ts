@@ -17,12 +17,13 @@ if (!apiKey) {
 }
 if (!myArguments.length) {
   console.error(errorFn("Please pass in a city to picnic in"));
+  console.warn(warningFn(`Usage: ./build/index.js [CITY]`));
   process.exit(1);
 }
 if (myArguments.length > 1) {
   console.warn(
     warningFn(
-      `You've passed in more than one city. We'll attempt to use the first one. ('${myArguments[0]}')`
+      `You've passed in more than one city. We'll attempt to use the first one: ('${myArguments[0]}')`
     )
   );
 }
