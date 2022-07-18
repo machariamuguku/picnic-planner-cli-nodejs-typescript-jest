@@ -1,13 +1,19 @@
 #!/usr/bin/env node
+import "dotenv/config";
 import chalk from "chalk";
 import fetch from "node-fetch";
 
+const apiKey = process.env.API_KEY;
 const errorFn = chalk.bold.red;
 const warningFn = chalk.hex("#FFA500");
 
 const allArguments = process.argv;
 const myArguments: string[] = allArguments.slice(2);
 
+if (!apiKey) {
+  console.log(errorFn("Api key missing"));
+  process.exit(1);
+}
 if (!myArguments.length) {
   console.log(errorFn("Please pass in a city to picnic in"));
   process.exit(1);
@@ -20,10 +26,10 @@ if (myArguments.length > 1) {
   );
 }
 
-const queryWeatherApi = async (city: string) => {
+const queryWeatherApi = async (city: string, apiKey: string) => {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?unitGroup=metric***REMOVED***`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/nextweekend?unitGroup=metric&key=${apiKey}`
     );
     if (response.ok) {
       const weatherData = await response.json();
