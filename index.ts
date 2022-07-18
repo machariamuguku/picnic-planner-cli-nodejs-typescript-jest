@@ -86,7 +86,7 @@ const processWeatherData = (weatherData: WeatherData) => {
         return currValue;
       }
       return prevValue;
-    });
+    }, picnicDays[0]);
     const day = getDayNameFromDateTime(preferredPicnicDay.datetime);
     console.log(
       chalkSuccess(
