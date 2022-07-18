@@ -4,9 +4,9 @@ import chalk from "chalk";
 import fetch from "node-fetch";
 import { WeatherData, Day } from "./types";
 
-const errorFn = chalk.bold.red;
-const warningFn = chalk.hex("#FFA500");
-const successFn = chalk.greenBright;
+const chalkError = chalk.bold.red;
+const chalkWarning = chalk.hex("#FFA500");
+const chalkSuccess = chalk.greenBright;
 
 const apiKey = process.env.API_KEY;
 const allArguments = process.argv;
@@ -14,17 +14,17 @@ const myArguments: string[] = allArguments.slice(2);
 const city = myArguments[0];
 
 if (!apiKey) {
-  console.error(errorFn("Api key missing"));
+  console.error(chalkError("Api key missing"));
   process.exit(1);
 }
 if (!myArguments.length) {
-  console.error(errorFn("Please pass in a city to picnic in"));
-  console.warn(warningFn(`Usage: ./build/index.js [CITY]`));
+  console.error(chalkError("Please pass in a city to picnic in"));
+  console.warn(chalkWarning(`Usage: ./build/index.js [CITY]`));
   process.exit(1);
 }
 if (myArguments.length > 1) {
   console.warn(
-    warningFn(
+    chalkWarning(
       `You've passed in more than one city. We'll attempt to use the first one: ('${city}')`
     )
   );
@@ -71,14 +71,14 @@ const processWeatherData = (weatherData: WeatherData) => {
 
   if (!picnicDays.length) {
     console.log(
-      successFn(
+      chalkSuccess(
         "The weather isn’t looking very good this weekend, maybe stay indoors."
       )
     );
     process.exit(0);
   } else if (picnicDays.length === 1) {
     const day = getDayNameFromDateTime(picnicDays[0].datetime);
-    console.log(successFn(`You should have your picnic on ${day}.`));
+    console.log(chalkSuccess(`You should have your picnic on ${day}.`));
     process.exit(0);
   } else {
     const preferredPicnicDay = picnicDays.reduce((prevValue, currValue) => {
@@ -89,7 +89,7 @@ const processWeatherData = (weatherData: WeatherData) => {
     });
     const day = getDayNameFromDateTime(preferredPicnicDay.datetime);
     console.log(
-      successFn(
+      chalkSuccess(
         `This weekend looks nice for a picnic, ${day} is best because it’s less windy.`
       )
     );
@@ -100,6 +100,6 @@ const processWeatherData = (weatherData: WeatherData) => {
 queryNextWeekendWeatherForecast(city, apiKey)
   .then((weatherData) => processWeatherData(weatherData))
   .catch((err) => {
-    console.error(errorFn(err));
+    console.error(chalkError(err));
     process.exit(1);
   });
