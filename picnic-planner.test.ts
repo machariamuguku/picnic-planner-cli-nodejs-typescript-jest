@@ -83,6 +83,7 @@ describe("picnic-planner-unit-tests", () => {
         "The weather isn’t looking very good this weekend, maybe stay indoors."
       )
     );
+    expect(process.exit).toHaveBeenCalledWith(0);
   });
 
   it("processWeatherData - one picnic day", () => {
@@ -99,6 +100,7 @@ describe("picnic-planner-unit-tests", () => {
     expect(consoleSpy).toHaveBeenCalledWith(
       chalkSuccess("You should have your picnic on Saturday.")
     );
+    expect(process.exit).toHaveBeenCalledWith(0);
   });
 
   it("processWeatherData - two picnic days", () => {
@@ -117,5 +119,6 @@ describe("picnic-planner-unit-tests", () => {
         "This weekend looks nice for a picnic, Saturday is best because it’s less windy."
       )
     );
+    expect(process.exit).toHaveBeenCalledWith(0);
   });
 });
