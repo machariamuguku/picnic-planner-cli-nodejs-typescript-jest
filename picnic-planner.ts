@@ -72,4 +72,5 @@ export {
   isExpectedToRain,
   getDayNameFromDateTime,
   processWeatherData,
+  chalkSuccess,
 };
