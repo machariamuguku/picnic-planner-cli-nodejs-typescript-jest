@@ -66,4 +66,10 @@ const processWeatherData = (weatherData: WeatherData) => {
   }
 };
 
-export { queryNextWeekendWeatherForecast, processWeatherData };
+export {
+  queryNextWeekendWeatherForecast,
+  isCold,
+  isExpectedToRain,
+  getDayNameFromDateTime,
+  processWeatherData,
+};
