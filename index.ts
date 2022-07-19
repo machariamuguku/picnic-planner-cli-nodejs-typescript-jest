@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 import "dotenv/config";
-import chalk from "chalk";
 import {
+  chalkError,
+  chalkWarning,
   queryNextWeekendWeatherForecast,
   processWeatherData,
 } from "./picnic-planner";
-
-const chalkError = chalk.bold.red;
-const chalkWarning = chalk.hex("#FFA500");
 
 const apiKey = process.env.API_KEY;
 const allArguments = process.argv;

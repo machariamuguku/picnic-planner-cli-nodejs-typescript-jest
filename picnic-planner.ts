@@ -2,6 +2,8 @@ import chalk from "chalk";
 import fetch from "node-fetch";
 import { WeatherData, Day } from "./types";
 
+const chalkError = chalk.bold.red;
+const chalkWarning = chalk.hex("#FFA500");
 const chalkSuccess = chalk.greenBright;
 
 const queryNextWeekendWeatherForecast = async (
@@ -72,5 +74,7 @@ export {
   isExpectedToRain,
   getDayNameFromDateTime,
   processWeatherData,
+  chalkError,
+  chalkWarning,
   chalkSuccess,
 };
