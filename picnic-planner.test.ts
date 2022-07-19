@@ -68,10 +68,14 @@ describe("picnic-planner-unit-tests", () => {
   });
 
   it("processWeatherData - no picnic day", () => {
-    jest.spyOn(process, "exit").mockImplementation();
+    jest.spyOn(process, "exit").mockImplementationOnce(() => {
+      throw new Error("process.exit() was called.");
+    });
     const consoleSpy = jest.spyOn(global.console, "log");
 
-    processWeatherData(sampleNairobiResp);
+    expect(() => {
+      processWeatherData(sampleNairobiResp);
+    }).toThrow("process.exit() was called.");
 
     expect(consoleSpy).toHaveBeenCalledTimes(1);
     expect(consoleSpy).toHaveBeenCalledWith(
@@ -82,10 +86,14 @@ describe("picnic-planner-unit-tests", () => {
   });
 
   it("processWeatherData - one picnic day", () => {
-    jest.spyOn(process, "exit").mockImplementation();
+    jest.spyOn(process, "exit").mockImplementationOnce(() => {
+      throw new Error("process.exit() was called.");
+    });
     const consoleSpy = jest.spyOn(global.console, "log");
 
-    processWeatherData(sampleMarrakechResp);
+    expect(() => {
+      processWeatherData(sampleMarrakechResp);
+    }).toThrow("process.exit() was called.");
 
     expect(consoleSpy).toHaveBeenCalledTimes(1);
     expect(consoleSpy).toHaveBeenCalledWith(
@@ -94,10 +102,14 @@ describe("picnic-planner-unit-tests", () => {
   });
 
   it("processWeatherData - two picnic days", () => {
-    jest.spyOn(process, "exit").mockImplementation();
+    jest.spyOn(process, "exit").mockImplementationOnce(() => {
+      throw new Error("process.exit() was called.");
+    });
     const consoleSpy = jest.spyOn(global.console, "log");
 
-    processWeatherData(sampleLondonResp);
+    expect(() => {
+      processWeatherData(sampleLondonResp);
+    }).toThrow("process.exit() was called.");
 
     expect(consoleSpy).toHaveBeenCalledTimes(1);
     expect(consoleSpy).toHaveBeenCalledWith(
